@@ -1,8 +1,8 @@
 a = list(map(int,input().split()))
 
 def ocheck(a):
-    for i in len(a):
-        for j in len(a):
+    for i in a:
+        for j in a:
             if i!=j:
                 product = a[i]*a[j]
                 if product%2!=0:
