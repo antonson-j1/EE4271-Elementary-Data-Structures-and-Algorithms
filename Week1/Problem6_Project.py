@@ -4,6 +4,7 @@ https://en.wikipedia.org/wiki/Birthday_problem
 Design a program that can test the Birthday problem, by a series of experiments, on randomly generated
 birthdays which test this paradox for n = 5,10,15,20,25,30...200.
 '''
+import random
 
 def numerator(a, n):
     num=1
@@ -28,6 +29,36 @@ def probability(n, numberofdays):
         probab_inv=1
         for i in range(n):
             probab_inv= probab_inv*(1 - float(n)/float(numberofdays))
-        return "(100 -{})".format(probab_inv)
+        return probab_inv
 
-print(str(probability(int(input()),365))+ "%")
+print("Enter the number of Random PPL: ")
+n1= int(input())
+
+print("Enter the number of iterations to check on: ")
+largetest= int(input())
+
+randomlist = random.sample(range(10, 201, 5), n1)
+# print(randomlist)
+
+for i in randomlist:
+    print("The number selected= "+ str(i))
+    p=[]
+
+    for m in range(largetest):
+        birthdays=[]
+        for k in range(i):
+            birthdays.extend([random.randrange(0,365)])
+        
+        if any(birthdays.count(element) > 1 for element in birthdays): #len(birthdays) != len(set(birthdays)):
+            p.append(True)
+        else:
+            p.append(False)
+
+    print(str(float(sum(p))/float(largetest)*100)+ "%" +"  on test")
+    
+    if i<=120:
+        print(str(probability(i,365))+ "%" + "  on theory \n")
+        print("Theory - test= " + str(probability(i,365) -float(sum(p))/float(largetest)*100) + "% \n\n")
+    else:
+        print("(100 - "+ str(probability(i,365))+ ") %" + "  on theory \n")
+        print("Theory - test= " + str(100 - probability(i,365) -float(sum(p))/float(largetest)*100) + "% \n\n")
