@@ -31,16 +31,16 @@ def probability(n, numberofdays):
             probab_inv= probab_inv*(1 - float(n)/float(numberofdays))
         return probab_inv
 
-print("Enter the number of Random PPL: ")
-n1= int(input())
+# print("Enter the number of Random PPL: ")
+# n1= int(input())
 
 print("Enter the number of iterations to check on: ")
 largetest= int(input())
 
-randomlist = random.sample(range(10, 201, 5), n1)
+# randomlist = random.sample(range(10, 201, 5), n1)
 # print(randomlist)
 
-for i in randomlist:
+for i in range(10, 201, 5):
     print("The number selected= "+ str(i))
     p=[]
 
